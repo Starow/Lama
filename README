@@ -1,2 +1,11 @@
 Bonjour ! 
 Je suis le fichier README du projet de Reseau
+Pour ajouter un nouveau fichier a commit: git add [nom fichier]
+Pour commit les fichiers : git commit -m 'commentaires'
+#A faire qu'une fois :#
+=>
+git remote add origin https://github.com/[username]/Lama.git
+
+Pour push le commit dans le repo : git push origin master
+
+C'est tout ! 
