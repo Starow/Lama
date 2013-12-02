@@ -9,3 +9,7 @@ git remote add origin https://github.com/[username]/Lama.git
 Pour push le commit dans le repo : git push origin master
 
 C'est tout ! 
+
+|git add [nom fichier]
+|git commit -m 'commentaires'
+|git push origin master
