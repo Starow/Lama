@@ -11,7 +11,7 @@ To compile for Linux
 If you want do download the development tree with git, be sure to do a *complete* checkout with `--recursive` and then run `bootstrap.sh`, `configure` and `make`:
 
     git clone --recursive https://github.com/Starow/Lama
-    cd tcpflow
+    cd Lama
     sh bootstrap.sh
     ./configure
     make
