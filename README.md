@@ -1,17 +1,32 @@
-#######################################################################
- _                                  _    _               _ _ _     _   
-| |                                | |  | |             | | (_)   | |  
-| |     __ _ _ __ ___   __ _ ______| |  | | ___  _ __ __| | |_ ___| |_ 
-| |    / _` | '_ ` _ \ / _` |______| |/\| |/ _ \| '__/ _` | | / __| __|
-| |___| (_| | | | | | | (_| |      \  /\  / (_) | | | (_| | | \__ \ |_ 
-\_____/\__,_|_| |_| |_|\__,_|       \/  \/ \___/|_|  \__,_|_|_|___/\__|
-                                                                       
-#######################################################################
+LAMA-WORDLIST
+===========
+Downloads directory: http://
 
-Bonjour, je suis le README du Projet.
-|git add .
-|git commit -m 'commentaires'
-|git push
+
+Compiling
+---------
+To compile for Linux
+
+
+If you want do download the development tree with git, be sure to do a *complete* checkout with `--recursive` and then run `bootstrap.sh`, `configure` and `make`:
+
+    git clone --recursive https://github.com/Starow/Lama
+    cd tcpflow
+    sh bootstrap.sh
+    ./configure
+    make
+    sudo make install  
+
+To download and compile for Amazon AMI:
+
+	ssh ec2-user@<your ec2 instance>
+	sudo bash yum -y install git make gcc-c++ automake autoconf boost-devel cairo-devel libpcap-devel zlib-devel
+	git clone --recursive https://github.com/simsong/tcpflow.git
+	sh bootstrap.sh
+
+
+Introduction To Lama-Wordlist
+=======================
 
 Description du Projet:
 Création de word-list comprennant des informations de réseaux sociaux.
