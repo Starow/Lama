@@ -1,33 +1,46 @@
 LAMA-WORDLIST
 ===========
-Downloads directory: http://
 
-
-Compiling
----------
-To compile for Linux
-
-
-If you want do download the development tree with git, be sure to do a *complete* checkout with `--recursive` and then run `bootstrap.sh`, `configure` and `make`:
-
-    git clone --recursive https://github.com/Starow/Lama
-    cd Lama
-    sh bootstrap.sh
-    ./configure
-    make
-    sudo make install  
-
-Introduction To Lama-Wordlist
+Introduction To The Project
 =======================
 
-Description du Projet:
-Création de word-list comprennant des informations de réseaux sociaux.
+The project Lama-wordlist is made to gather informations on social networks and create intelligent word-lists with these informations. 
+The informations gathered on social networks will be focus on a person who will be the target of futur brute-forcing attack.
 
-3 parties distincts:
-==> Récupération d'informations brutes sur les réseaux sociaux.
-	Via API Facebook, Graph, Twitter etc.
+Gathering
+---------
+Informations gathered about the target will be as follow:
+	-first-name.
+	-last-name.
+	-birth-date.
+	-home-town.
+	-friends:
+		-first-name.
+		-last-name.
+		-birth-date.
+		-home-town.
 
-==> Création d'une liste de mots dans un format adapté.
-	Format à définir.
+Formating 
+---------
+These informations will be stored in a file under an appropriate format/structures.
 
-==> Génération de word-lists comprennant les permutations nécéssaires.
+Generation
+---------
+The wordlist will be created with a mix of all the informations based on research on common passwords.
+Most of the passwords is created with a name of relatives plus a date behind or after the name.
+So Lama-wordlist will create this permutations with the date the name and the postal code.
+
+Example:
+Info gathered: Martin Foo 12/02/1950 Metz
+Martinfoo
+MartinFoo
+Martin1950
+Foo1950
+Martin57
+Foo57
+M4rt1n57
+F001950
+Martin1202
+1202Martin
+12Martin1950
+etc...
