@@ -17,14 +17,6 @@ If you want do download the development tree with git, be sure to do a *complete
     make
     sudo make install  
 
-To download and compile for Amazon AMI:
-
-	ssh ec2-user@<your ec2 instance>
-	sudo bash yum -y install git make gcc-c++ automake autoconf boost-devel cairo-devel libpcap-devel zlib-devel
-	git clone --recursive https://github.com/simsong/tcpflow.git
-	sh bootstrap.sh
-
-
 Introduction To Lama-Wordlist
 =======================
 
