@@ -10,7 +10,14 @@ def morceaux(iterable, taille, format=iter):
 def leet(chaine):
 	"""Je suis la fonction de transformation en alphabet leet"""
 	chaine = chaine.lower()
-	chaine = chaine.replace("o","0").replace("i","1").replace("e","3").replace("a","4").replace("s","5").replace("t","7").replace("b","8")
+	#TODO le faire en regex (import re)
+	chaine = chaine.replace("o","0")\
+	.replace("i","1")\
+	.replace("e","3")\
+	.replace("a","4")\
+	.replace("s","5")\
+	.replace("t","7")\
+	.replace("b","8")
 	return chaine
 
 def traitement(surname,name,birthdate,hometown,postalcode,output,*empty):
@@ -23,7 +30,7 @@ def traitement(surname,name,birthdate,hometown,postalcode,output,*empty):
 	# ouverture en mode ajout.
 	with open(output,"a") as wordlist:
 		#rules of password creations...
-		# TODO find an permutation algorithm for this job
+		# TODO find a permutation algorithm for this job
 
 		wordlist.write(surname+"\n")
 		wordlist.write(name+"\n")
