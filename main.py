@@ -7,11 +7,11 @@ from traitement import *
 def main():
 	"""Fonction main gamin"""
 
-	parser = argparse.ArgumentParser(description='Create passwords wordlist.'\
-		, epilog='Copyright: Staross & Benesaii // 2014')
+	parser = argparse.ArgumentParser(description = 'Create passwords wordlist.'\
+		, epilog = 'Copyright: Staross & Benesaii // 2014')
 
-	parser.add_argument('input', type=str, help='input file', action='store')
-	parser.add_argument('output', type=str, help='output file', action='store')
+	parser.add_argument('input', type = str, help = 'input file', action = 'store')
+	parser.add_argument('output', type = str, help = 'output file', action = 'store')
 	args = parser.parse_args()
 
 	#with pour les prob d'open/close.
