@@ -1,5 +1,6 @@
 """Je suis le module des fonctions de traitement"""
 import sys
+import re
 from itertools import chain, islice
 
 def morceaux(iterable, taille, format=iter):
@@ -11,6 +12,9 @@ def morceaux(iterable, taille, format=iter):
 def add_entry(path_input):
 	"""Je suis la fonction d'ajout d'entrees manuelle"""
 	# ouverture en mode ajout.
+	d_ex = r"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$"
+	p_ex = r"^(0[1-9]|[1-9][0-9])[0-9]{3}$"
+
 	with open(path_input,"a") as list_pers:
 		
 		while 1: #while user have data to record
@@ -19,12 +23,23 @@ def add_entry(path_input):
 
 			if len(surname) == 0:
 				break
+			#TODO improve that
+			try:
+				name = raw_input("Name []: ")
+				birthdate = raw_input("Birthdate dd/mm/yyyy []:")
 
-			#TODO tester tout les inputs
-			name = raw_input("Name []: ")
-			birthdate = raw_input("Birthdate dd/mm/yyyy []:")
-			hometown = raw_input("Hometown []:")
-			postalcode = raw_input("Postalcode xxxxx []:")
+				if re.match(d_ex, birthdate) == None:
+				 	raise ValueError("Birth date format not match")
+
+				hometown = raw_input("Hometown []:")
+				postalcode = raw_input("Postalcode xxxxx []:")
+
+				if re.match(p_ex, postalcode) == None:
+				 	raise ValueError("Postalcode format not match")
+
+			except TypeError:
+				print("Something went wrong")
+
 
 			list_pers.write(surname + "\n")
 			list_pers.write(name + "\n")
@@ -94,7 +109,3 @@ def traitement(surname,name,birthdate,hometown,postalcode,output,*empty):
 		wordlist.write(leet(name) + "\n")
 		wordlist.write(leet(surname + name) + "\n")
 		wordlist.write(leet(name + surname) + "\n")
-
-
-		
-		

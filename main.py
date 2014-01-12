@@ -33,7 +33,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#TODO
-#Créer une fonction optionnelle pour ajouter des utilisateurs manuellement 
-#(Nom,Prénom,Birthday etc...) pour le fichier d'input.
