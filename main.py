@@ -1,7 +1,7 @@
 #!/usr/bin/python2.7
 # -*-coding:UTF-8 -*
 
-import sys, argparse
+import argparse
 from traitement import *
 
 def main():
@@ -12,7 +12,11 @@ def main():
 
 	parser.add_argument('input', type = str, help = 'input file', action = 'store')
 	parser.add_argument('output', type = str, help = 'output file', action = 'store')
+	parser.add_argument('--add', help = 'add manual entries', action = 'store_true')
 	args = parser.parse_args()
+
+	if args.add == True:
+		add_entry(args.input)
 
 	#with pour les prob d'open/close.
 	with open(args.input,"r") as list_pers:
@@ -29,3 +33,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#TODO
+#Créer une fonction optionnelle pour ajouter des utilisateurs manuellement 
+#(Nom,Prénom,Birthday etc...) pour le fichier d'input.

@@ -1,4 +1,5 @@
 """Je suis le module des fonctions de traitement"""
+import sys
 from itertools import chain, islice
 
 def morceaux(iterable, taille, format=iter):
@@ -6,6 +7,30 @@ def morceaux(iterable, taille, format=iter):
 	it = iter(iterable)
 	while True:
 		yield format(chain((it.next(),), islice(it, taille - 1)))
+
+def add_entry(path_input):
+	"""Je suis la fonction d'ajout d'entrees manuelle"""
+	# ouverture en mode ajout.
+	with open(path_input,"a") as list_pers:
+		
+		while 1: #while user have data to record
+			print ("Press enter now to stop")
+			surname = raw_input("Surname []: ")
+
+			if len(surname) == 0:
+				break
+
+			#TODO tester tout les inputs
+			name = raw_input("Name []: ")
+			birthdate = raw_input("Birthdate dd/mm/yyyy []:")
+			hometown = raw_input("Hometown []:")
+			postalcode = raw_input("Postalcode xxxxx []:")
+
+			list_pers.write(surname + "\n")
+			list_pers.write(name + "\n")
+			list_pers.write(birthdate + "\n")
+			list_pers.write(hometown + "\n")
+			list_pers.write(postalcode + "\n")
 
 def leet(chaine):
 	"""Je suis la fonction de transformation en alphabet leet"""
