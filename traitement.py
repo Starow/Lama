@@ -3,14 +3,14 @@ import sys
 import re
 from itertools import chain, islice, permutations
 
-def morceaux(iterable, taille, format=iter):
-	"""DOC morceaux: Parcours d'iterable par morceaux"""
+def Windowing(iterable, taille, format=iter):
+	"""Windowing Function"""
 	it = iter(iterable)
 	while True:
 		yield format(chain((it.next(),), islice(it, taille - 1)))
 
 def add_entry(path_input):
-	"""Je suis la fonction d'ajout d'entrees manuelle"""
+	"""Adding Entry Function"""
 	# ouverture en mode ajout.
 	d_ex = r"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$"
 	p_ex = r"^(0[1-9]|[1-9][0-9])[0-9]{3}$"
@@ -61,7 +61,9 @@ def leet(chaine):
 
 
 def all_perms(elements):
-	"""Je suis la fonction de permutation de tout les elements de la liste"""
+	"""Permutation Function
+	Input : String or list
+	Output: String or list"""
 	if len(elements) <=1:
 		yield elements
 	else:
@@ -71,8 +73,10 @@ def all_perms(elements):
 				yield perm[:i] + elements[0:1] + perm[i:]
 
 
-def traitement(morceau, output):
-	"""Je suis la fonction de traitement"""
+def Lama(morceau, output):
+	"""Traitement Function
+	Input : List, Filename,
+	Output: .lama"""
 
 	#Removing the "\n"
 	for i, elt in enumerate(morceau):
@@ -96,11 +100,9 @@ def traitement(morceau, output):
 	print list_cp
 
 #Uncomplete
-#TODO finish that or rethink it ... => write in a file
-#TODO little permutation ?
-#TODO ...
-	print output
-	with open(output, "a") as wordlist:
+#TODO little permutation...
+#TODO Create intelligent little list to permutate.
+	with open(output+'.lama', "a") as wordlist:
 		for perm in all_perms(morceau):
 			wordlist.write(perm[0]+perm[1]+perm[2]+"\n")
 			wordlist.write(leet(perm[0]+perm[1]+perm[2])+"\n")

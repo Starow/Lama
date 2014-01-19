@@ -5,10 +5,10 @@ import argparse
 from traitement import *
 
 def main():
-	"""Fonction main gamin"""
+	"""Main Function"""
 
-	parser = argparse.ArgumentParser(description = 'Create passwords wordlist.'\
-		, epilog = 'Copyright: Staross & Benesaii // 2014')
+	parser = argparse.ArgumentParser(description = 'Create passwords wordlist\
+		.', epilog = 'Copyright: Staross & Benesaii // 2014')
 
 	parser.add_argument('input', type = str, help = 'input file', action = 'store')
 	parser.add_argument('output', type = str, help = 'output file', action = 'store')
@@ -20,10 +20,10 @@ def main():
 
 	#with pour les prob d'open/close.
 	with open(args.input,"r") as list_pers:
-		for morceau in morceaux(list_pers, 5, list):
+		for morceau in Windowing(list_pers, 5, list):
 			#traitement du fichier input...
-			#TODO traitement de l'erreur si le fichier input est malformé (incomplet)
-			traitement(morceau, args.output)
+			#TODO traitement de l'erreur si le fichier input est incomplet
+			Lama(morceau, args.output)
 
 if __name__ == "__main__":
     main()
