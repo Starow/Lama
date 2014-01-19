@@ -1,7 +1,7 @@
 """Je suis le module des fonctions de traitement"""
 import sys
 import re
-from itertools import chain, islice
+from itertools import chain, islice, permutations
 
 def morceaux(iterable, taille, format=iter):
 	"""DOC morceaux: Parcours d'iterable par morceaux"""
@@ -48,64 +48,59 @@ def add_entry(path_input):
 			list_pers.write(postalcode + "\n")
 
 def leet(chaine):
-	"""Je suis la fonction de transformation en alphabet leet"""
+	"""Leet Function:
+	Input : string
+	Output: string"""
 	dico_leet = { "a":"4", "e":"3", "i":"1", "s":"5", "t":"7", "b":"8", "o":"0" }
 	chaine = chaine.lower()
 
-	for cle, val in dico_leet.items():
-		chaine = chaine.replace(cle,val)
+	for i, elt in dico_leet.items():
+		chaine = chaine.replace(i,elt)
 
 	return chaine
 
-def traitement(surname,name,birthdate,hometown,postalcode,output,*empty):
+
+def all_perms(elements):
+	"""Je suis la fonction de permutation de tout les elements de la liste"""
+	if len(elements) <=1:
+		yield elements
+	else:
+		for perm in all_perms(elements[1:]):
+			for i in range(len(elements)):
+				#nb elements[0:1] works in both string and list contexts
+				yield perm[:i] + elements[0:1] + perm[i:]
+
+
+def traitement(morceau, output):
 	"""Je suis la fonction de traitement"""
-	day = birthdate[:2]
-	month = birthdate[3:5]
-	year = birthdate[6:]
-	short_post = postalcode[:2]
 
-	# ouverture en mode ajout.
-	with open(output,"a") as wordlist:
-		#rules of password creations...
-		# TODO find a permutation algorithm for this job
+	#Removing the "\n"
+	for i, elt in enumerate(morceau):
+		morceau[i] = morceau[i][:len(morceau[i])-1]
 
-		wordlist.write(surname + "\n")
-		wordlist.write(name + "\n")
-		wordlist.write(surname + name + "\n")
-		wordlist.write(name + surname + "\n")
+	print morceau
 
-		wordlist.write(day + surname + "\n")
-		wordlist.write(day + name + "\n")
-		wordlist.write(day + surname + name + "\n")
-		wordlist.write(day + name + surname + "\n")
+	#Separating day from month from year
+	list_nb_date = [morceau[2][:2],morceau[2][3:5],morceau[2][6:],morceau[2][8:]]
+	#Putting postal code and short postal code in a separated list
+	list_cp = [morceau[4],morceau[4][:2]]
+	#Deleting raw date format
+	del morceau[2]
+	#Deleting the name of the city *** Dunno what to do with it
+	del morceau[2]
+	#Concat date to morceau
+	#morceau.extend(date)
+	# short_post = postalcode[:2]
+	print morceau
+	print list_nb_date
+	print list_cp
 
-		wordlist.write(surname + day + "\n")
-		wordlist.write(name + day + "\n")
-		wordlist.write(surname + name + day + "\n")
-		wordlist.write(name + surname + day + "\n")
-
-		wordlist.write(surname + year + "\n")
-		wordlist.write(name + year + "\n")
-		wordlist.write(surname + name + year + "\n")
-		wordlist.write(name + surname + year + "\n")
-
-		wordlist.write(year + surname + "\n")
-		wordlist.write(year + name + "\n")
-		wordlist.write(year + surname + name + "\n")
-		wordlist.write(year + name + surname + "\n")
-
-		wordlist.write(surname + short_post + "\n")
-		wordlist.write(name + short_post + "\n")
-		wordlist.write(surname + name + short_post + "\n")
-		wordlist.write(name + surname + short_post + "\n")
-
-		wordlist.write(short_post + surname + "\n")
-		wordlist.write(short_post + name + "\n")
-		wordlist.write(short_post + surname + name + "\n")
-		wordlist.write(short_post + name + surname + "\n")
-
-		#leet one
-		wordlist.write(leet(surname) + "\n")
-		wordlist.write(leet(name) + "\n")
-		wordlist.write(leet(surname + name) + "\n")
-		wordlist.write(leet(name + surname) + "\n")
+#Uncomplete
+#TODO finish that or rethink it ... => write in a file
+#TODO little permutation ?
+#TODO ...
+	print output
+	with open(output, "a") as wordlist:
+		for perm in all_perms(morceau):
+			wordlist.write(perm[0]+perm[1]+perm[2]+"\n")
+			wordlist.write(leet(perm[0]+perm[1]+perm[2])+"\n")
