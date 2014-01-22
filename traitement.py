@@ -10,42 +10,49 @@ def Windowing(iterable, taille, format=iter):
 		yield format(chain((it.next(),), islice(it, taille - 1)))
 
 def add_entry(path_input):
-	"""Adding Entry Function"""
-	# ouverture en mode ajout.
+	"""Adding Entry Function
+	Input : Filename
+	Output: .lama"""
+	
 	d_ex = r"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$"
 	p_ex = r"^(0[1-9]|[1-9][0-9])[0-9]{3}$"
 
-	with open(path_input,"a") as list_pers:
+	# Ouverture en mode ajout.
+	with open(path_input+'.lama',"a") as list_pers:
 		
-		while 1: #while user have data to record
-			print ("Press enter now to stop")
-			surname = raw_input("Surname []: ")
+		#while user have data to record
+		while True: 
+			#Creating a temporary list to store inputs.
+			temp_list = []
 
-			if len(surname) == 0:
+			print "Press enter now to stop"
+			temp_list.append(raw_input("Surname []: "))
+
+			if len(temp_list[0]) == 0:
 				break
-			#TODO improve that
-			try:
-				name = raw_input("Name []: ")
-				birthdate = raw_input("Birthdate dd/mm/yyyy []:")
 
-				if re.match(d_ex, birthdate) == None:
-				 	raise ValueError("Birth date format not match")
+			temp_list.append(raw_input("Name []: "))
 
-				hometown = raw_input("Hometown []:")
-				postalcode = raw_input("Postalcode xxxxx []:")
+			while True:
+				temp_list.append(raw_input("Birthdate dd/mm/yyyy []:"))
+				if re.match(d_ex, temp_list[2]) is not None:
+					break
+				print "Birthdate Format is not correct"
 
-				if re.match(p_ex, postalcode) == None:
-				 	raise ValueError("Postalcode format not match")
+			temp_list.append(raw_input("Hometown []:"))
 
-			except TypeError:
-				print("Something went wrong")
+			while True:
+				temp_list.append(raw_input("Postalcode xxxxx []:"))
+				if re.match(p_ex, temp_list[4]) is not None:
+					break
+				print "Postalcode Format is not correct"
 
+			#Adding input in the file
+			for i, elt in enumerate(temp_list):
+				list_pers.write(elt + "\n")
 
-			list_pers.write(surname + "\n")
-			list_pers.write(name + "\n")
-			list_pers.write(birthdate + "\n")
-			list_pers.write(hometown + "\n")
-			list_pers.write(postalcode + "\n")
+			#Deleting the temporary list
+			del temp_list;
 
 def leet(chaine):
 	"""Leet Function:
@@ -74,15 +81,13 @@ def all_perms(elements):
 
 
 def Lama(morceau, output):
-	"""Traitement Function
+	"""Password Function
 	Input : List, Filename,
 	Output: .lama"""
 
 	#Removing the "\n"
 	for i, elt in enumerate(morceau):
 		morceau[i] = morceau[i][:len(morceau[i])-1]
-
-	print morceau
 
 	#Separating day from month from year
 	list_nb_date = [morceau[2][:2],morceau[2][3:5],morceau[2][6:],morceau[2][8:]]
@@ -99,10 +104,11 @@ def Lama(morceau, output):
 	print list_nb_date
 	print list_cp
 
+
 #Uncomplete
 #TODO little permutation...
 #TODO Create intelligent little list to permutate.
 	with open(output+'.lama', "a") as wordlist:
 		for perm in all_perms(morceau):
 			wordlist.write(perm[0]+perm[1]+perm[2]+"\n")
-			wordlist.write(leet(perm[0]+perm[1]+perm[2])+"\n")
+			#wordlist.write(leet(perm[0]+perm[1]+perm[2])+"\n")

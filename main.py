@@ -19,7 +19,7 @@ def main():
 		add_entry(args.input)
 
 	#with pour les prob d'open/close.
-	with open(args.input,"r") as list_pers:
+	with open(args.input+'.lama',"r") as list_pers:
 		for morceau in Windowing(list_pers, 5, list):
 			#traitement du fichier input...
 			#TODO traitement de l'erreur si le fichier input est incomplet
