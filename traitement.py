@@ -68,7 +68,7 @@ def leet(chaine):
 	return chaine
 
 
-def Lama(list_raw, output):
+def Lama(list_raw, output, mlen):
 	"""Password Function
 	Input : List, Filename,
 	Output: .lama"""
@@ -96,22 +96,25 @@ def Lama(list_raw, output):
 	print list_nb_date
 	print list_cp
 
-#Uncomplete
+	list_name.extend(list_nb_date)
+	list_name.extend(list_cp)
 
+#Uncomplete
 	with open(output+'.lama', "a") as wordlist:
 		x = 2
-		#TODO create a function of this : input : list_raw
-		while x <= len(list_raw):
-			for perm in list(itertools.permutations(list_raw, x)):
+		#TODO create a function
+		while x <= len(list_name):
+			for perm in list(itertools.permutations(list_name, x)):
 				chain = ""
 				y = x - 1
 				while y >= 0:
 					chain = chain + perm[y]
 					y -= 1
-				wordlist.write(chain + "\n")
+				if len(chain) <= mlen : 
+					wordlist.write(chain + "\n")
 			x += 1
 
-		for i,elt in list(itertools.product(list_name, list_nb_date)):
-			print i, elt
+		#for i,elt in list(itertools.product(list_name, list_nb_date)):
+			#print i, elt
 			#wordlist.write(perm[0]+perm[1]+perm[2]+"\n")
 			#wordlist.write(leet(perm[0]+perm[1]+perm[2])+"\n")

@@ -18,7 +18,7 @@ Création de word-list comprennant des informations de réseaux sociaux.
 
 3 parties distincts:
 ==> Récupération d'informations brutes sur les réseaux sociaux.
-	Via API Facebook, Graph, Twitter etc.
+	Via NicePeople? Flick? LinkedIn?
 
 ==> Création d'une liste de mots dans un format adapté.
 	Format à définir.
