@@ -2,6 +2,7 @@
 import sys
 import re
 import itertools
+import os
 from itertools import chain, islice, permutations
 
 def Windowing(iterable, taille, format=iter):
@@ -67,8 +68,24 @@ def leet(chaine):
 
 	return chaine
 
+def write_all_perm(Alist,Afile,Alen):
+	"""Permutation Function:
+	Input: list, namefile, int, boolean
+	Output: file
+	"""
+	x = 2
+	while x <= len(Alist):
+		for perm in list(itertools.permutations(Alist, x)):
+			chain = ""
+			y = x - 1
+			while y >= 0:
+				chain = chain + perm[y]
+				y -= 1
+				if len(chain) <= Alen : 
+					Afile.write(chain + "\n")
+		x += 1
 
-def Lama(list_raw, output, mlen):
+def Lama(list_raw, output, mlen, l33t):
 	"""Password Function
 	Input : List, Filename,
 	Output: .lama"""
@@ -77,44 +94,28 @@ def Lama(list_raw, output, mlen):
 	for i, elt in enumerate(list_raw):
 		list_raw[i] = list_raw[i][:len(list_raw[i])-1]
 
-	#Separating day from month from year
-	list_nb_date = [list_raw[2][:2],list_raw[2][3:5],list_raw[2][6:],list_raw[2][8:]]
-	#Putting postal code and short postal code in a separated list
-	list_cp = [list_raw[4],list_raw[4][:2]]
 
-	list_name = [list_raw[0],list_raw[1]]
-	#Deleting raw date format
-	#del list_raw[2]
-	#Deleting the name of the city *** Dunno what to do with it
-	#del list_raw[2]
-	#Concat date to list_raw
-	#list_raw.extend(date)
-	# short_post = postalcode[:2]
-	print list_raw
+	#If there is an error about the size of the list.
+	try:
+		#Separating day from month from year.
+		list_nb_date = [list_raw[2][:2],list_raw[2][3:5],list_raw[2][6:],list_raw[2][8:]]
+		#Putting postal code and short postal code in a separated list.
+		list_cp = [list_raw[4],list_raw[4][:2]]
+		#Putting Name and surname in a separated list.
+		list_name = [list_raw[0],list_raw[1]]
+	except IndexError:
+		print """the Input list isn't complete (missing line):
+		==>> Running operation aborted! <<=="""
+		sys.exit(0)
 
-	print list_name
-	print list_nb_date
-	print list_cp
-
+	#TODO : improve the quality of the wordlist by creating better lists.
+	# Here there is some "useless permutation"
+	
 	list_name.extend(list_nb_date)
 	list_name.extend(list_cp)
 
-#Uncomplete
 	with open(output+'.lama', "a") as wordlist:
-		x = 2
-		#TODO create a function
-		while x <= len(list_name):
-			for perm in list(itertools.permutations(list_name, x)):
-				chain = ""
-				y = x - 1
-				while y >= 0:
-					chain = chain + perm[y]
-					y -= 1
-				if len(chain) <= mlen : 
-					wordlist.write(chain + "\n")
-			x += 1
+		write_all_perm(list_name,wordlist,mlen)
 
-		#for i,elt in list(itertools.product(list_name, list_nb_date)):
-			#print i, elt
-			#wordlist.write(perm[0]+perm[1]+perm[2]+"\n")
-			#wordlist.write(leet(perm[0]+perm[1]+perm[2])+"\n")
+	Mo = os.path.getsize('./{0}.lama'.format(output)) / 1048576
+	print "A Lama-wordlist {0}.lama was successfully created ({1} Mo)".format(output,Mo)

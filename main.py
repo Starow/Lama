@@ -21,7 +21,11 @@ def main():
 	 action = 'store')
 
 	parser.add_argument('--add',
-	 help = 'add manual entries',
+	 help = 'Add manual entries',
+	 action = 'store_true')
+
+	parser.add_argument('--l33t',
+	 help = 'Toggle the leet treatment',
 	 action = 'store_true')
 
 	parser.add_argument('--mlen',
@@ -40,7 +44,7 @@ def main():
 		for morceau in Windowing(list_pers, 5, list):
 			#traitement du fichier input...
 			#TODO traitement de l'erreur si le fichier input est incomplet
-			Lama(morceau, args.output, args.mlen)
+			Lama(morceau, args.output, args.mlen, args.l33t)
 
 if __name__ == "__main__":
     main()
