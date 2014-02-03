@@ -110,7 +110,7 @@ def Lama(list_raw, output, mlen, l33t):
 
 	#TODO : improve the quality of the wordlist by creating better lists.
 	# Here there is some "useless permutation"
-	
+
 	list_name.extend(list_nb_date)
 	list_name.extend(list_cp)
 
@@ -119,3 +119,4 @@ def Lama(list_raw, output, mlen, l33t):
 
 	Mo = os.path.getsize('./{0}.lama'.format(output)) / 1048576
 	print "A Lama-wordlist {0}.lama was successfully created ({1} Mo)".format(output,Mo)
+	
