@@ -8,32 +8,32 @@ def main():
 	"""Main Function"""
 
 	parser = argparse.ArgumentParser(description = 'Create passwords wordlist.',
-	 epilog = 'Copyright: Staross & Benesaii // 2014')
+        epilog = 'Copyright: Staross & Benesaii // 2014')
 
 	parser.add_argument('input',
-	 type = str,
-	 help = 'Input file name',
-	 action = 'store')
+        type = str,
+        help = 'Input file name',
+        action = 'store')
 
 	parser.add_argument('output',
-	 type = str,
-	 help = 'Output file name',
-	 action = 'store')
+        type = str,
+        help = 'Output file name',
+        action = 'store')
 
 	parser.add_argument('--add',
-	 help = 'Add manual entries',
-	 action = 'store_true')
+        help = 'Add manual entries',
+        action = 'store_true')
 
 	parser.add_argument('--l33t',
-	 help = 'Toggle the leet treatment',
-	 action = 'store_true')
+        help = 'Toggle the leet treatment',
+        action = 'store_true')
 
 	parser.add_argument('--mlen',
-	 default = 24,
-	 type = int,
-	 help = 'Define the max lenght of pass created (default = 24)',
-	 action = 'store')
-	
+        default = 24,
+        type = int,
+        help = 'Define the max lenght of pass created (default = 24)',
+        action = 'store')
+
 	args = parser.parse_args()
 
 	if args.add == True:

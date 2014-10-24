@@ -1,4 +1,6 @@
-"""Je suis le module des fonctions de traitement"""
+"""
+Treatment function module
+"""
 import sys
 import re
 import itertools
@@ -15,15 +17,15 @@ def add_entry(path_input):
 	"""Adding Entry Function
 	Input : Filename
 	Output: .lama"""
-	
+
 	d_ex = r"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$"
 	p_ex = r"^(0[1-9]|[1-9][0-9])[0-9]{3}$"
 
 	# Opening in add mode
 	with open(path_input+'.lama',"a") as list_pers:
-		
+
 		#while user have data to record
-		while True: 
+		while True:
 			#Creating a temporary list to store inputs.
 			temp_list = []
 
@@ -81,7 +83,7 @@ def write_all_perm(Alist,Afile,Alen):
 			while y >= 0:
 				chain = chain + perm[y]
 				y -= 1
-				if len(chain) <= Alen : 
+				if len(chain) <= Alen :
 					Afile.write(chain + "\n")
 		x += 1
 
@@ -119,4 +121,3 @@ def Lama(list_raw, output, mlen, l33t):
 
 	Mo = os.path.getsize('./{0}.lama'.format(output)) / 1048576
 	print "A Lama-wordlist {0}.lama was successfully created ({1} Mo)".format(output,Mo)
-	
